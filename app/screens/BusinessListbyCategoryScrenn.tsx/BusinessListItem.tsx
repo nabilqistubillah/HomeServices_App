@@ -1,8 +1,13 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Colors from '@/app/Utils/Colors'
 import Entypo from '@expo/vector-icons/Entypo';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '@/app/types';
 
+
+type BusinessListItemNavigationProp = StackNavigationProp<RootStackParamList, 'business-detail'>;
 interface Business {
   images: { url: string }[];
   contactPerson: string; // Added contactPerson property
@@ -11,18 +16,25 @@ interface Business {
 }
 
 export default function BusinessListItem({ business }: { business: Business }) {
+  const navigation=useNavigation <BusinessListItemNavigationProp>();
   return (
-    <View style={styles.container}>
-      <Image source={{uri: business?.images[0]?.url}} style={styles.image}
+    <TouchableOpacity style={styles.container} 
+    onPress={()=>navigation.push('business-detail',
+    {
+      business:business
+    })
+    }>
+      <Image source={{uri: business?.images[0]?.url}} 
+        style={styles.image}
        />
        <View style={styles.subContainer}>
-        <Text style={{fontFamily:'Outfit-Regular',color:Colors.LIGHT_GRAY,fontSize:15}}>{business.contactPerson}</Text>
+        <Text style={{fontFamily:'Outfit-Regular',color:Colors.GRAY,fontSize:15}}>{business.contactPerson}</Text>
         <Text style={{fontFamily:'Outfit-Bold', fontSize:19}}>{business.name}</Text>
-        <Text style={{fontFamily:'Outfit-Regular', color:Colors.LIGHT_GRAY, fontSize:16}}>
-        <Entypo name="location" size={20} color={Colors.PRIMARY}  />
+        <Text style={{fontFamily:'Outfit-Regular', color:Colors.GRAY, fontSize:13}}>
+        <Entypo name="location" size={15} color={Colors.PRIMARY}  />
         {business.address}</Text>
        </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

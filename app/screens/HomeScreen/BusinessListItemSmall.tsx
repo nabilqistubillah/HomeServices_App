@@ -26,7 +26,7 @@ export default function BusinessListItemSmall({ business }: { business: Business
           fontFamily:'outfit-Regular',
           padding:3,
           color:Colors.PRIMARY,
-          backgroundColor: Colors.LIGHT_GRAY,
+          backgroundColor: Colors.GRAY,
           borderRadius: 3,
           alignSelf:'flex-start',
           paddingHorizontal:7,

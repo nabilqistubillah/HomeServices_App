@@ -4,6 +4,7 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import GlobalAPI from '@/app/Utils/GlobalAPI';
 import BusinessListItem from './BusinessListItem';
+import Colors from '@/app/Utils/Colors';
 
 
 export default function BusinessListByCategoryScreen() {
@@ -28,12 +29,15 @@ export default function BusinessListByCategoryScreen() {
         <Ionicons name="arrow-back-outline" size={30} color="black"/>
         <Text style={{fontSize:25,fontFamily:'Outfit-Medium'}}>{param?.category}</Text>
       </TouchableOpacity>
-      <FlatList
+      {businessList?.length>0? <FlatList
       data={businessList}
+      style={{marginTop:15}}
       renderItem={({item})=>(
         <BusinessListItem business={item}/>
       )}
-      />
+      />:
+      <Text style={{fontFamily:'Outfit-Medium',color:Colors.GRAY,
+        fontSize:20,textAlign:'center',marginTop:'20%',}}>No Business Found</Text>}
     </View>
   )
 }
