@@ -50,12 +50,12 @@ export default function BusinessDetailsScreen() {
           <BusinessPhotos business={business}/>
       </View>
     </ScrollView>
-    <View style={{display:'flex', flexDirection:'row'}}>
+    <View style={{display:'flex', flexDirection:'row', margin:8, gap:8}}>
       <TouchableOpacity style={styles.massagebtn}>
         <Text style={{textAlign:'center', fontFamily:'Outfit-Medium', color:Colors.PRIMARY, fontSize:18}}>Massage</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.bookingbtn}>
-        <Text style={{textAlign:'center', fontFamily:'Outfit-Medium', color:Colors.WHITE, fontSize:18}}>Massage</Text>
+        <Text style={{textAlign:'center', fontFamily:'Outfit-Medium', color:Colors.WHITE, fontSize:18}}>Book Now</Text>
       </TouchableOpacity>
     </View>
   </View>
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     borderWidth:1,
     borderColor:Colors.PRIMARY,
     borderRadius:99,
+    flex:1,
   },
   bookingbtn:{
     padding:15,
@@ -92,6 +93,7 @@ const styles = StyleSheet.create({
     borderWidth:1,
     borderColor:Colors.PRIMARY,
     borderRadius:99,
+    flex:1,
   },
 
 })
