@@ -1,6 +1,7 @@
 import { View, Text, FlatList, Image } from 'react-native'
 import React from 'react'
 import Heading from '@/app/Components/Heading';
+import { Ionicons } from '@expo/vector-icons';
 
 interface BusinessPhotosProps {
   business: any; // Replace 'any' with a more specific type if available

@@ -1,11 +1,13 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, Modal } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/app/Utils/Colors';
+import Heading from '@/app/Components/Heading';
 import Entypo from '@expo/vector-icons/Entypo';
 import BusinessAboutMe from './BusinessAboutMe';
 import BusinessPhotos from './BusinessPhotos';
+import BookingModal from './BookingModal';
 
 type BusinessDetailsScreenRouteParams = {
   business: any; // Replace 'any' with your actual business type if available
@@ -14,7 +16,7 @@ type BusinessDetailsScreenRouteParams = {
 export default function BusinessDetailsScreen() {
   const { params } = useRoute<RouteProp<{ params: BusinessDetailsScreenRouteParams }, 'params'>>();
   const [business,setBusiness]=useState(params.business);
-  const [isReadMore, setIsReadMore] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
   useEffect(() => {
     
@@ -54,10 +56,17 @@ export default function BusinessDetailsScreen() {
       <TouchableOpacity style={styles.massagebtn}>
         <Text style={{textAlign:'center', fontFamily:'Outfit-Medium', color:Colors.PRIMARY, fontSize:18}}>Massage</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.bookingbtn}>
+      <TouchableOpacity style={styles.bookingbtn}
+      onPress={()=>setShowModal(true)}>
         <Text style={{textAlign:'center', fontFamily:'Outfit-Medium', color:Colors.WHITE, fontSize:18}}>Book Now</Text>
       </TouchableOpacity>
     </View>
+
+    {/* model Booking screen */}
+    <Modal
+      animationType='slide' visible={showModal}>
+        <BookingModal hideModal={()=>setShowModal(false)}/>
+    </Modal>
   </View>
   )
 }
