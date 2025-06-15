@@ -1,18 +1,28 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import React, { use } from 'react'
 import Colors from '@/app/Utils/Colors'
-
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
+import type { StackNavigationProp } from '@react-navigation/stack';
 
 interface Business {
   image: { url: string }[];
   name: string;
-  contactPerson: string; // Added contactPerson property
-  category: { name: string }; // Added category property
+  contactPerson: string;
+  category: { name: string };
 }
 
+type RootStackParamList = {
+  'business-detail': { business: Business };
+  // ...other routes
+};
+
 export default function BusinessListItemSmall({ business }: { business: Business }) {
+  const navigation=useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={()=>navigation.push('business-detail', {
+      business:business
+    })}>
       <Image source={{uri:business?.image[0]?.url}}
       style={styles.image}
       />
@@ -32,7 +42,7 @@ export default function BusinessListItemSmall({ business }: { business: Business
           paddingHorizontal:7,
           }}>{business?.category.name}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

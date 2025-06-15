@@ -2,21 +2,33 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Colors from '@/app/Utils/Colors'
 import Entypo from '@expo/vector-icons/Entypo';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import * as native from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/app/types';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
+type Booking = {
+  id: any;
+  status?: string;
+};
 
-type BusinessListItemNavigationProp = StackNavigationProp<RootStackParamList, 'business-detail'>;
+type BusinessListItemNavigationProp = NativeStackNavigationProp<RootStackParamList, 'business-detail'>;
+
 interface Business {
   images: { url: string }[];
-  contactPerson: string; // Added contactPerson property
-  name: string; // Added name property
-  address: string; // Added address property
+  contactPerson: string; 
+  name: string; 
+  address: string; 
 }
 
-export default function BusinessListItem({ business }: { business: Business }) {
-  const navigation=useNavigation <BusinessListItemNavigationProp>();
+type Props = {
+  business: Business;
+  booking: Booking;
+};
+
+
+export default function BusinessListItem({ business, booking }: Props) {
+  const navigation = native.useNavigation<BusinessListItemNavigationProp>();
   return (
     <TouchableOpacity style={styles.container} 
     onPress={()=>navigation.push('business-detail',
@@ -31,8 +43,10 @@ export default function BusinessListItem({ business }: { business: Business }) {
         <Text style={{fontFamily:'Outfit-Regular',color:Colors.GRAY,fontSize:15}}>{business.contactPerson}</Text>
         <Text style={{fontFamily:'Outfit-Bold', fontSize:19}}>{business.name}</Text>
         <Text style={{fontFamily:'Outfit-Regular', color:Colors.GRAY, fontSize:13}}>
-        <Entypo name="location" size={15} color={Colors.PRIMARY}  />
+       <AntDesign name="calendar" size={24} color={Colors.PRIMARY} style={{marginRight:13}}/> 
         {business.address}</Text>
+
+        {booking?.id?<Text>Show Booking</Text>:null}
        </View>
     </TouchableOpacity>
   )

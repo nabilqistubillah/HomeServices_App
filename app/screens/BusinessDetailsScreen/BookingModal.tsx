@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, NativeSyntheticEvent, TextInputChangeEventData, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, NativeSyntheticEvent, TextInputChangeEventData, ScrollView, KeyboardAvoidingView, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import PageHeading from '@/app/Components/PageHeading';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,16 +8,18 @@ import Heading from '@/app/Components/Heading';
 import { TextInput } from 'react-native-gesture-handler';
 import GlobalAPI from '@/app/Utils/GlobalAPI';
 import { useUser } from '@clerk/clerk-react';
+import moment from 'moment';
 
 type BookingModalProps = {
+  businessId: string;
   hideModal: () => void;
 };
-export default function BookingModal(this: any, { hideModal }: BookingModalProps) {
+export default function BookingModal(this: any, { businessId, hideModal }: BookingModalProps) {
 
   const [timeList, setTimeList] = useState<{ time: string }[]>([]);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [selectedNote, setSelectedNote] = useState<string>('');
+  const [note, setNote] = useState<string>('');
   const {user}=useUser();
   useEffect(()=>{
     getTime();
@@ -44,23 +46,26 @@ export default function BookingModal(this: any, { hideModal }: BookingModalProps
     }
     setTimeList(timeList);
   }
-  function setNote(text: NativeSyntheticEvent<TextInputChangeEventData>): void {
-    throw new Error('Function not implemented.');
-  }
 
 
-  // Create Booking Method
+  // membuat metode booking
   const createNewBooking = () => {
+    if (!selectedTime || !selectedDate) {
+      ToastAndroid.show('Please Select Date and Time!', ToastAndroid.LONG)
+      return;
+    }
     const data = {
       userName:user?.fullName,
       userEmail:user?.primaryEmailAddress?.emailAddress,
-      date: selectedDate,
       time: selectedTime,
-      note: selectedNote,
-      userId: user?.id,
+      date: moment(selectedDate).format('YYYY-MM-DD'),
+      note: note,
+      businessId: businessId,
     };
     GlobalAPI.createBooking(data).then(resp => {
       console.log("Resp", resp)
+      ToastAndroid.show('Booking Created Sucsessfully!', ToastAndroid.LONG)
+      hideModal();
     })
   }
   return (
@@ -110,7 +115,7 @@ export default function BookingModal(this: any, { hideModal }: BookingModalProps
             <TextInput placeholder='Note' 
             numberOfLines={4} multiline={true} 
             style={styles.noteTextArea}
-            onChange={(text)=>setNote(text)}
+            onChange={e => setNote(e.nativeEvent.text)}
             />
           </View>
 
@@ -167,3 +172,5 @@ const styles= StyleSheet.create({
     elevation:2,
   }
 })
+// Removed custom moment function; using moment library instead.
+
