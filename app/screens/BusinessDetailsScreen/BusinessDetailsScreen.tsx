@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, Modal } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, Modal, Linking } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
@@ -10,7 +10,7 @@ import BusinessPhotos from './BusinessPhotos';
 import BookingModal from './BookingModal';
 
 type BusinessDetailsScreenRouteParams = {
-  business: any; // Replace 'any' with your actual business type if available
+  business: any; 
 };
 
 export default function BusinessDetailsScreen() {
@@ -21,6 +21,11 @@ export default function BusinessDetailsScreen() {
   useEffect(() => {
     
   }, [])
+
+  const onMessageBtnClick=()=>{
+    Linking.openURL('mailto:'+business?.email+"?subject=I am Looking for your Service&body=Hi There,");
+  }
+
   return business&&(
   <View>
     <ScrollView style={{height:'93%'}}>
@@ -53,7 +58,10 @@ export default function BusinessDetailsScreen() {
       </View>
     </ScrollView>
     <View style={{display:'flex', flexDirection:'row', margin:8, gap:8}}>
-      <TouchableOpacity style={styles.massagebtn}>
+
+      <TouchableOpacity style={styles.massagebtn}
+      onPress={()=>onMessageBtnClick()}
+      >
         <Text style={{textAlign:'center', fontFamily:'Outfit-Medium', color:Colors.PRIMARY, fontSize:18}}>Massage</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.bookingbtn}

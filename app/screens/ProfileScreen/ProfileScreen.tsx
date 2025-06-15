@@ -1,4 +1,4 @@
-import { View, Text, Image, FlatList } from 'react-native'
+import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import type { IconProps } from '@expo/vector-icons/build/createIconSet';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -52,16 +52,16 @@ export default function ProfileScreen() {
       </View>
     </View>
 
-    <View style={{paddingTop:100 }}>
+    <View style={{paddingTop:60 }}>
       <FlatList
       data={profileMenu}
       renderItem={({item,index}) =>(
-        <View style={{display:'flex',flexDirection:'row',
-        alignItems:'center', gap:10, marginBottom:20, paddingHorizontal:50}}>
-          <Ionicons name={item.icon as any} size={24} color={Colors.PRIMARY}/>
+        <TouchableOpacity style={{display:'flex',flexDirection:'row',
+        alignItems:'center', gap:10, marginBottom:38, paddingHorizontal:80}}>
+          <Ionicons name={item.icon as any} size={30} color={Colors.PRIMARY}/>
           <Text style={{fontFamily:'Outfit-Regular',
             fontSize:20,}}>{item.name}</Text>
-        </View>
+        </TouchableOpacity>
       )}
       />
     </View>
