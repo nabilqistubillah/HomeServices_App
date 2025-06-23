@@ -1,12 +1,12 @@
-import { View, Text } from 'react-native'
+// import { View, Text } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import BookingScreen from '../screens/BookingScreen/BookingScreen';
-import BusinessDetailsScreen from '../screens/BusinessDetailsScreen/BusinessDetailsScreen';
+import BookingScreen from '@/app/screens/BookingScreen/BookingScreen';
+import BusinessDetailsScreen from '@/app/screens/BusinessDetailsScreen/BusinessDetailsScreen';
 
 const Stack = createStackNavigator();
 
-export default function BookingNavigation() {
+const BookingNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{
         headerShown: false
@@ -16,3 +16,5 @@ export default function BookingNavigation() {
         <Stack.Screen name='business-detail' component={BusinessDetailsScreen}/>
     </Stack.Navigator>
 )}
+
+export default BookingNavigation;

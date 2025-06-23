@@ -26,7 +26,6 @@ type Props = {
   booking: Booking;
 };
 
-
 export default function BusinessListItem({ business, booking }: Props) {
   const navigation = native.useNavigation<BusinessListItemNavigationProp>();
   return (

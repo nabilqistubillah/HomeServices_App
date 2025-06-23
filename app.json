@@ -8,13 +8,10 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "jsEngine": "jsc",
     "ios": {
-      "jsEngine": "jsc",
       "supportsTablet": true
     },
     "android": {
-      "jsEngine": "jsc",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"

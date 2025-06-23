@@ -1,12 +1,11 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
-import BusinessListByCategoryScreen from '../screens/BusinessListbyCategoryScrenn.tsx/BusinessListByCategoryScreen';
-import BusinessDetailsScreen from '../screens/BusinessDetailsScreen/BusinessDetailsScreen';
+import HomeScreen from '@/app/screens/HomeScreen/HomeScreen';
+import BusinessListByCategoryScreen from '@/app/screens/BusinessListbyCategory/BusinessListByCategoryScreen'
+import BusinessDetailsScreen from '@/app/screens/BusinessDetailsScreen/BusinessDetailsScreen';
 
 const Stack = createStackNavigator();
-export default function HomeNavigation() {
+const HomeNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{
         headerShown: false
@@ -17,3 +16,5 @@ export default function HomeNavigation() {
     </Stack.Navigator>
   )
 }
+
+export default HomeNavigation;

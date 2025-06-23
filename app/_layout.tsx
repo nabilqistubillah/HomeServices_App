@@ -1,17 +1,15 @@
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo';
 import { Stack } from "expo-router";
-import { NavigationContainer } from '@react-navigation/native';
-import TabNavigation from './Navigation/TabNavigation';
-import Login from './screens/LoginScreen/Login';
 import { useFonts } from 'expo-font';
 import { View, ActivityIndicator } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Login from './screens/LoginScreen/Login';
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    'outfit-Regular': require('../assets/fonts/Outfit-Regular.ttf'),
-    'outfit-Medium': require('../assets/fonts/Outfit-Medium.ttf'),
-    'outfit-Bold': require('../assets/fonts/Outfit-Bold.ttf'),
+    'Outfit-Regular': require('../assets/fonts/Outfit-Regular.ttf'),
+    'Outfit-Medium': require('../assets/fonts/Outfit-Medium.ttf'),
+    'Outfit-Bold': require('../assets/fonts/Outfit-Bold.ttf'),
   });
 
   if (!fontsLoaded) {
@@ -24,14 +22,17 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-    <ClerkProvider publishableKey="pk_test_Y2l2aWwtY2FsZi01NS5jbGVyay5hY2NvdW50cy5kZXYk">
-      <SignedIn>
-          <TabNavigation />
-      </SignedIn>
-      <SignedOut>
-        <Login />
-      </SignedOut>
-    </ClerkProvider>
+      <ClerkProvider publishableKey="pk_test_Y2l2aWwtY2FsZi01NS5jbGVyay5hY2NvdW50cy5kZXYk">
+        <SignedIn>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            {/* Removed problematic screen - let expo-router handle it automatically */}
+          </Stack>
+        </SignedIn>
+        <SignedOut>
+          <Login />
+        </SignedOut>
+      </ClerkProvider>
     </GestureHandlerRootView>
   );
 }

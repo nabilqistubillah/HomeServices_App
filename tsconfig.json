@@ -2,7 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "types": ["node"],
+    "types": ["react", "react-native", "node"],
     "paths": {
       "@/*": ["./*"]
     }
@@ -14,5 +14,5 @@
     "expo-env.d.ts",
     "app/index.tsx",
     "app/Utils/GlobalAPI.js"
-  ]
+, "app/screens/BusinessListbyCategory"  ]
 }

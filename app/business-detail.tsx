@@ -44,7 +44,7 @@ const BusinessDetailsScreen = () => {
 
   return (
     <View>
-      <ScrollView style={{height:'93%'}}>
+      <ScrollView style={{height:'93%'}} nestedScrollEnabled={true} >
         <TouchableOpacity style={styles.backBtnContainer}
           onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back-outline" size={30} color="white"/>

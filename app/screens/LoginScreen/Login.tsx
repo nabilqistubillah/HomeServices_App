@@ -3,8 +3,7 @@ import React from 'react'
 import Colors from '@/app/Utils/Colors'
 import * as WebBrowser from "expo-web-browser";
 import { useOAuth } from '@clerk/clerk-expo'; // Adjust the import path based on your setup
-
-import { useWarmUpBrowser } from '../../hooks/warmUpBrowser';
+import { useWarmUpBrowser } from '@/app/hooks/warmUpBrowser';
 WebBrowser.maybeCompleteAuthSession();
 
 export default function Login() {
@@ -31,7 +30,7 @@ export default function Login() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={{ alignItems: 'center' }}>
           <Image
-            source={require('./../../../assets/images/login.png')}
+            source={require('@/assets/images/login.png')}
             style={styles.LoginImage}
           />
           <View style={styles.subContainer}>

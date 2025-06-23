@@ -8,13 +8,12 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
   'business-list': { category: string };
-  // Add other routes here if needed
+  
 };
 
 export default function Categories() {
 
  
-    // Removed duplicate navigation declaration
     type Category = {
         icon: { url: string };
         name: string;
@@ -28,7 +27,7 @@ export default function Categories() {
     /**mendapatkan kategori */
     const getCategories = () => {
         GlobalAPI.getCateggories().then(resp => {
-          const allowed = ['Cleaning', 'Repair', 'Painting', 'Shifting']; // yang mau ditampilkan
+          const allowed = ['Cleaning', 'Repair', 'Painting', 'Shifting'];
           const filtered = resp?.categories.filter((cat: Category) =>
             allowed.includes(cat.name)
           );
@@ -43,7 +42,7 @@ export default function Categories() {
       numColumns={4}
       renderItem={({item,index})=>index<=3 ? (
         <TouchableOpacity style={styles.container}
-        onPress={()=>navigation.navigate('business-list', {
+        onPress={()=>navigation.push('business-list', {
           category: item.name
         })}>
             <View style={styles.iconContainer}>

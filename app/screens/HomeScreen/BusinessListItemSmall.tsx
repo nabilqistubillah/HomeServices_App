@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import React, { use } from 'react'
+import React from 'react'
 import Colors from '@/app/Utils/Colors'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';

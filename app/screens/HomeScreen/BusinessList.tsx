@@ -15,7 +15,7 @@ interface business {
   category: { name: string }; // Update property type to match expected structure
 }
 
-export default function BusinessList() {
+export default function BusinessListIte() {
 
     const [businessList, setBusinessList] = useState<business[]>([]);
     useEffect(()=>{
@@ -39,6 +39,7 @@ export default function BusinessList() {
       showsHorizontalScrollIndicator={false}
       renderItem={({item,index}) =>(
         <View style={{marginRight:10}}>
+
             <BusinessListItemSmall business={item}/>
         </View>
     )}
