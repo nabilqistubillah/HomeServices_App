@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.iqiisss.First"
     },
     "web": {
       "bundler": "metro",
@@ -27,16 +28,25 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/splash.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#8d40fe"
         }
       ],
       "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "0bc7ca5b-534a-4802-9ecf-9d706f9ad507"
+      }
+    },
+    "owner": "iqiisss"
   }
 }

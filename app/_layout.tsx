@@ -1,9 +1,9 @@
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo';
-import { Stack } from "expo-router";
+import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { View, ActivityIndicator } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import Login from './screens/LoginScreen/Login';
+import Login from './screens/LoginScreen/Login'; // pastikan path-nya sesuai
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -24,11 +24,12 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ClerkProvider publishableKey="pk_test_Y2l2aWwtY2FsZi01NS5jbGVyay5hY2NvdW50cy5kZXYk">
         <SignedIn>
+          {/* ✅ Tambahkan Stack dan arahkan ke folder (tabs) */}
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            {/* Removed problematic screen - let expo-router handle it automatically */}
           </Stack>
         </SignedIn>
+
         <SignedOut>
           <Login />
         </SignedOut>

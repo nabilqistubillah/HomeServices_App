@@ -27,11 +27,7 @@ export default function Categories() {
     /**mendapatkan kategori */
     const getCategories = () => {
         GlobalAPI.getCateggories().then(resp => {
-          const allowed = ['Cleaning', 'Repair', 'Painting', 'Shifting'];
-          const filtered = resp?.categories.filter((cat: Category) =>
-            allowed.includes(cat.name)
-          );
-          setCategories(filtered);
+          setCategories(resp?.categories);
         });
     } 
   return (
